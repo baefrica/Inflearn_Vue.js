@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+    <title>구구단</title>
+    <style>
+        div {
+            color: blue;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div>{{ firstN }} 곱하기 {{nextN}} 는?</div>
+        <form v-on:submit="onSubmitForm">
+            <!-- v-model 이 input 이랑 뷰 연결 -->
+            <input type="number" v-model="value">
+            <button type="submit">입력</button>
+            <h1 id="result">{{result}}</h1>
+        </form>
+    </div>
+
+    <div id="result">
+        
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#root',
+        // data 를 넣으면K 화면 부분이 알아서 바뀜
+        data: {
+            firstN: Math.ceil(Math.random() * 9),
+            nextN: Math.ceil(Math.random() * 9),
+            value: '',
+            result: '',
+        },
+        methods: {
+            onSubmitForm(e) {
+                e.preventDefault();
+                if(this.firstN * this.nextN === parseInt(this.value)) {
+                        this.result = "정답";
+                        this.firstN = Math.ceil(Math.random() * 9);
+                        this.nextN = Math.ceil(Math.random() * 9);
+                        this.value = '';
+                }
+                else {
+                    this.result = "땡";
+                    this.value = '';
+                }
+            },
+        },
+    });
+</script>
+</html>

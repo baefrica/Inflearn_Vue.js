@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+    <title>좋아요</title>
+    <style>
+        div {
+            color: blue;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- if, else 는 붙어있어야함 -->
+        <div v-if="liked">좋아요 눌렀음!</div>
+        <button v-if="liked" v-on:click="rollback">돌아가기</button>
+        <button v-else v-on:click="onClickButton">Like</button>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#root',
+        // data 를 넣으면 화면 부분이 알아서 바뀜
+        data: {
+            liked: false,
+        },
+        methods: {
+            onClickButton() {
+                this.liked = true;
+            },
+            rollback() {
+                this.liked = false;
+            }
+        },
+    });
+</script>
+</html>
